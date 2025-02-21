@@ -8,7 +8,6 @@ using OperationsReporting.Repositories;
 
 //var host = builder.Build();
 //host.Run();
-const string midAtlPennCodes = "02,05,07,13,87,36,86,26,80,15,11";
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
@@ -21,10 +20,6 @@ var acctRepoConnection = configuration["accountingSqlConnectionString"];
 string startDate = "2025-02-09";
 string endDate = "2025-02-15";
 
-string startDateEstimation = "2025-02-16";
-string endDateEstimation = "2025-02-20";
-
-
 var repo = new CowanDataRepository(dataRepoConnection);
 var acctRepo = new CowanAccountingRepository(acctRepoConnection);
 
@@ -36,7 +31,6 @@ Console.WriteLine(string.Empty);
 foreach (var region in Constants.regions)
 {
     var totalMiles = await repo.GetTotalMiles(startDate, endDate, region.Value.Terminals);
-    var totalMilesEstimation = await repo.GetTotalMiles(startDateEstimation, endDateEstimation, region.Value.Terminals);
 
     var revenues = await acctRepo.GetRevenuePerMile(1, 2025, "Asset", region.Value.AccountingCodes);
 

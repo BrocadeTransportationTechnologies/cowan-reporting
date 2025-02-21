@@ -12,7 +12,6 @@ public class CowanDataRepository(string connectionString)
 {
     public async Task<int> GetTotalMiles(string startDate, string endDate, List<string> terminals)
     {
-        //var conn = new SqlConnection(connectionString);
         int totalMiles = 0;
         using var connection = new SqlConnection(connectionString);
         using var command = new SqlCommand("SSRS_RevenueVsPay_COWAN_01052023", connection);

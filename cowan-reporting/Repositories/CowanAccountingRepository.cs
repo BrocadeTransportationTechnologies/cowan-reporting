@@ -11,7 +11,6 @@ public class CowanAccountingRepository(string connectionString)
 {
     public async Task<(decimal, decimal)> GetRevenuePerMile(int month, int year, string division, string depts, string format = "Monthly")
     {
-        //var conn = new SqlConnection(connectionString);
         using var connection = new SqlConnection(connectionString);
         using var command = new SqlCommand("COWAN_sp_GetAssetStats", connection);
 
